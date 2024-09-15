@@ -325,8 +325,10 @@ Term::start_shell( std::string const & shell )
 
     std::string slave_name;
 
-    if ( ( m_write_fd = m_read_fd = open_master_pty( slave_name ) ) == -1 )
+    if ( ( m_write_fd = m_read_fd = open_master_pty( slave_name ) ) == -1 ) {
+        m_logger.error() << "open_master_pty failed." << std::endl;
         return -1;
+    }
 
     // A return value of -2 indicates that opening the pseudoterminal failed
     // due to permission issues, so let's try it with pipes instead
@@ -375,6 +377,13 @@ Term::open_master_pty( std::string & slave_name )
         if ( errno == EACCES )
         {
             m_logger.info( ) <<  "posix_openpt() failed due to permission "
+                             << "issues, trying to use pipes" << std::endl;
+            return -2;
+        }
+
+        if ( errno == ENOENT )
+        {
+            m_logger.info( ) <<  "posix_openpt() failed due to file not found "
                              << "issues, trying to use pipes" << std::endl;
             return -2;
         }
@@ -522,6 +531,8 @@ Term::start_piped_shell( std::string const & shell )
 {
     int fdes[ 2 ];
 
+    m_logger.info() << "Starting piped shell..." << std::endl;
+
     // Create pipe set for sending data from the child to the parent
 
     if ( pipe( fdes ) < 0 )
@@ -602,6 +613,8 @@ Term::start_piped_shell( std::string const & shell )
                            << strerror( errno ) << std::endl;
         return -1;
     }
+
+    m_logger.info() << "Started piped shell successfully." << std::endl;
 
     return child_pid;
 }
