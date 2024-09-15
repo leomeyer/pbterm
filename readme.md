@@ -1,13 +1,13 @@
 # pbterm - Terminal emulator for PocketBook
 ## Fork for newer devices (SDK 6.8)
 
-Please see the original [README file](https://github.com/leomeyer/pbterm?tab=readme-ov-file#readme) for instructions on installation and usage.
+Please see the [original README file](https://github.com/leomeyer/pbterm?tab=readme-ov-file#readme) for instructions on installation and usage.
 
 ### Tested devices
 
 - Verse Pro Color (PB634; firmware version U634k3.6.8.3806)
 
-### Download binaries
+### Precompiled binaries
 
 Downloads are available on the [Releases page](https://github.com/leomeyer/pbterm/releases).
 
