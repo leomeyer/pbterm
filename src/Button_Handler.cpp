@@ -62,12 +62,12 @@ Button_Handler::handle_repeat( int key,
 
     switch ( key )
     {
-        case KEY_NEXT :
+        case IV_KEY_NEXT :
             m_mess.send( message::Change_Font_Size( 1 ) );
             return 1;
 
 
-        case KEY_PREV :
+        case IV_KEY_PREV :
             m_mess.send( message::Change_Font_Size( -1 ) );
             return 1;
     }
@@ -91,15 +91,15 @@ Button_Handler::handle_release( int key,
 
     switch ( key )
     {
-        case KEY_MENU :
+        case IV_KEY_MENU :
             m_mess.send( message::Show_Keyboard( ) );
             break;
 
-        case KEY_NEXT :
+        case IV_KEY_NEXT :
             m_mess.send( message::Toggle_Recording( ) );
             break;
 
-        case KEY_PREV :
+        case IV_KEY_PREV :
             m_mess.send( message::Show_Menu( ) );
             break;
 
@@ -116,19 +116,19 @@ Button_Handler::handle_release( int key,
  * should be treated as the "forward" button, while the other one
  * as the "backward" button. Of course, what is "up" or "to the
  * right" depends on the orientation - and the Pocketbook does
- * it's own mixing the return values up, exchanging KEY_NEXT
- * and KEY_PREV for the 90 and 180 ccw orientation.
+ * it's own mixing the return values up, exchanging IV_KEY_NEXT
+ * and IV_KEY_PREV for the 90 and 180 ccw orientation.
  ******************************************/
 
 int
 Button_Handler::factor_in_orientation( int key )
 {
-    if (    ( key != KEY_NEXT && key != KEY_PREV )
+    if (    ( key != IV_KEY_NEXT && key != IV_KEY_PREV )
          || m_orientation == ROTATE0
          || m_orientation == ROTATE180 )
         return key;
 
-    return key == KEY_NEXT ? KEY_PREV : KEY_NEXT;
+    return key == IV_KEY_NEXT ? IV_KEY_PREV : IV_KEY_NEXT;
 }
 
 

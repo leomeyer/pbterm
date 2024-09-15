@@ -65,7 +65,7 @@ Submenu::add( short int    type,
               char const * text )
 {
     imenu tmp = { type,
-                  m_start_index + m_entries.size( ) - 1,
+                  static_cast<short>(m_start_index + m_entries.size( ) - 1),
                   const_cast< char * >( text ),
                   0 };
 

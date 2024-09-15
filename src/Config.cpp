@@ -279,6 +279,8 @@ Config::set_up_logger( )
     }
 
     m_cfg.erase( "log_file" );
+
+    m_logger.info() << "pbterm startup..." << std::endl;
 }       
 
 

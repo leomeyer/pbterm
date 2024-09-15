@@ -31,19 +31,24 @@
 
 #include "inkview.h"
 
+// Typedef for the signature of the GetMenuRect() function
+
+typedef irect ( * GetMenuRect_t )( imenu const * );
+
+// Typedef for the signature of the GetTouchInfo() function
+
+typedef iv_mtinfo * ( * GetTouchInfo_t )( void );
+
+/*
 
 // Event to be evaluated during multi-touch guestures
 
 #define EVT_MTSYNC  39
 
 
-// Typedef for the signature of the GetMenuRect() function
-
-typedef irect ( * GetMenuRect_t )( imenu const * );
 
 
 // Structure returned by the GetTouchInfo() function
-
 typedef struct iv_mtinfo_s {
     int active;
     int x;
@@ -54,9 +59,6 @@ typedef struct iv_mtinfo_s {
 } iv_mtinfo;
 
 
-// Typedef for the signature of the GetTouchInfo() function
-
-typedef iv_mtinfo * ( * GetTouchInfo_t )( void );
 
 
 // ISPOINTEREVENT is missing two new types of events, so redefine it
@@ -84,6 +86,7 @@ typedef iv_mtinfo * ( * GetTouchInfo_t )( void );
 #undef TF
 #endif
 
+*/
 
 #endif
 
